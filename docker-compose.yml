@@ -1,0 +1,47 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: user
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: marketplace-php
+    container_name: course-work-backend
+    restart: unless-stopped
+    working_dir: /var/www/
+#    command: bash -c "php artisan migrate & php artisan db:seed"
+    volumes:
+      - ./:/var/www
+    networks:
+      - network
+  db:
+    image: mysql:8.0
+    container_name: mysql-marketplace
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: marketplace
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_PASSWORD: 12345
+      MYSQL_USER: admin
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - network
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - network
+networks:
+  network:
+    driver: bridge
