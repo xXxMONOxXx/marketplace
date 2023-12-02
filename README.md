@@ -1,7 +1,7 @@
 Stoma Mikhail Gennadevich
 Laravel marketplace back-end part
 
-![](https://github.com/marketplace/alive.gif)
+![](https://github.com/xXxMONOxXx/marketplace/blob/master/alive.gif)
 
 TO START PROJECT:
 
