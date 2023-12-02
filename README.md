@@ -4,7 +4,7 @@ Laravel marketplace back-end part
 
 TO START PROJECT:
 
-open marketplace-laravel console and type this commands:
+open marketplace-laravel console and type this commands: <br /> 
 composer install <br />
 php artisan migrate <br />
 php artisan db:seed <br />
